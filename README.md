@@ -28,6 +28,35 @@ cargo run
 # JWT_USER_NAME: one JWT_USER in .env
 ```
 
+## Docker build
+```bash
+git clone https://github.com/lategege/electerm-sync-server-rust.git
+cd electerm-sync-server-rust
+
+#Docker build
+docker build electerm-sync-server-rust:latest .
+```
+
+
+## Docker run with compose.yaml
+```bash
+version: '3.8'
+services:
+  electerm-rust:
+    image: electerm-sync-server-rust:latest
+    container_name: electerm-rust
+    ports:
+      - "7837:7837"
+    environment:
+      - JWT_SECRET=YOUR OWN SECERT
+      - JWT_USERS=user1,user2
+      - PORT=7837
+      - HOST=0.0.0.0
+    volumes:
+      - ./data:/app/data
+    restart: always
+```
+
 ## Test
 
 ```sh
